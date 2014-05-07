@@ -18,7 +18,11 @@ RUN apt-get remove -y build-essential wget curl && \
  apt-get autoremove -y && apt-get clean -y && \
  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /opt/apache-couchdb-*
 
+# Package in user config and sctips.
 ADD ./opt /opt
+
+# Package in couch config.
+ADD local.ini /usr/local/etc/couchdb/
 
 # Configuration
 RUN sed -e 's/^bind_address = .*$/bind_address = 0.0.0.0/' -i /usr/local/etc/couchdb/default.ini
