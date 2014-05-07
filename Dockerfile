@@ -28,5 +28,7 @@ ADD local.ini /usr/local/etc/couchdb/
 RUN sed -e 's/^bind_address = .*$/bind_address = 0.0.0.0/' -i /usr/local/etc/couchdb/default.ini
 RUN /opt/couchdb-config
 
-CMD ["/opt/start_couch"]
+# Expose for remote administration and replication.
 EXPOSE 5984
+
+CMD ["/opt/start_couch"]
